@@ -18,10 +18,10 @@
   <link rel="preload" href="assets/alexsima-logo.webp" as="image" type="image/webp">
   <script>document.documentElement.classList.add('intro-on');</script>
   <link rel="stylesheet" href="assets/fonts.css?v=5">
-  <link rel="stylesheet" href="site.css?v=1">
-  <link rel="stylesheet" href="intro.css?v=5">
-  <script src="intro.js?v=4" defer></script>
-  <script src="app.js?v=5" defer></script>
+  <link rel="stylesheet" href="site.css?v=4">
+  <link rel="stylesheet" href="intro.css?v=7">
+  <script src="intro.js?v=5" defer></script>
+  <script src="app.js?v=6" defer></script>
   <script src="booking-core.js?v=2" defer></script>
   <script src="booking.js?v=5" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"HairSalon","name":"Alex Sima Barber Studio","url":"https://tibidinu1031.github.io/alexsimabarberstudio/","logo":"https://tibidinu1031.github.io/alexsimabarberstudio/assets/alexsima-logo.jpg","image":"https://tibidinu1031.github.io/alexsimabarberstudio/assets/fade-beard-profile.jpg","telephone":"+40757651403","priceRange":"30-120 RON","address":{"@type":"PostalAddress","streetAddress":"Strada Neptun 30","addressLocality":"Brașov","addressRegion":"Brașov","postalCode":"500352","addressCountry":"RO"},"geo":{"@type":"GeoCoordinates","latitude":45.6415164,"longitude":25.6369792},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:30","closes":"17:30"}],"sameAs":["https://mero.ro/p/alex-sima","https://www.instagram.com/alexsimabarberstudio/","https://www.facebook.com/p/Alex-Sima-Barber-Studio-61584611043215/"]}</script>
@@ -33,9 +33,8 @@
       <radialGradient id="pole-ball" cx=".36" cy=".3" r=".75"><stop offset="0" stop-color="#fff6d2"/><stop offset=".38" stop-color="#e8bf5f"/><stop offset=".72" stop-color="#9a6f22"/><stop offset="1" stop-color="#3a2807"/></radialGradient>
       <linearGradient id="pole-shade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".62"/><stop offset=".26" stop-color="#fff" stop-opacity=".38"/><stop offset=".42" stop-color="#fff" stop-opacity=".06"/><stop offset=".7" stop-color="#000" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity=".66"/></linearGradient>
       <pattern id="pole-stripes" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="48" fill="#b3202a"/><rect x="12" width="12" height="48" fill="#f4efe4"/><rect x="24" width="12" height="48" fill="#1f3f8f"/><rect x="36" width="12" height="48" fill="#f4efe4"/><animateTransform id="pole-spin" attributeName="patternTransform" type="translate" additive="sum" from="0 0" to="48 0" dur="1.2s" repeatCount="indefinite"/></pattern>
-      <clipPath id="pole-fill"><rect id="pole-fill-level" x="0" y="276" width="64" height="0"/></clipPath>
     </defs>
-    <symbol id="barber-pole" viewBox="0 0 64 312"><circle cx="32" cy="14" r="12" fill="url(#pole-ball)"/><rect x="6" y="26" width="52" height="14" rx="3" fill="url(#pole-metal)"/><rect x="11" y="40" width="42" height="236" fill="#140f08"/><rect x="11" y="40" width="42" height="236" fill="url(#pole-stripes)" clip-path="url(#pole-fill)"/><rect x="11" y="40" width="42" height="236" fill="url(#pole-shade)"/><rect x="6" y="276" width="52" height="14" rx="3" fill="url(#pole-metal)"/><rect x="2" y="292" width="60" height="9" rx="2" fill="url(#pole-metal)"/><rect x="10" y="302" width="44" height="8" rx="2" fill="#3a2807"/></symbol>
+    <symbol id="barber-pole" viewBox="0 0 64 312"><circle cx="32" cy="14" r="12" fill="url(#pole-ball)"/><rect x="6" y="26" width="52" height="14" rx="3" fill="url(#pole-metal)"/><rect x="11" y="40" width="42" height="236" fill="#140f08"/><rect x="11" y="40" width="42" height="236" fill="url(#pole-stripes)"/><rect x="11" y="40" width="42" height="236" fill="url(#pole-shade)"/><rect x="6" y="276" width="52" height="14" rx="3" fill="url(#pole-metal)"/><rect x="2" y="292" width="60" height="9" rx="2" fill="url(#pole-metal)"/><rect x="10" y="302" width="44" height="8" rx="2" fill="#3a2807"/></symbol>
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15M12 5l7 7-7 7"/></symbol>
     <symbol id="external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
     <symbol id="star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></symbol>
@@ -55,11 +54,10 @@
   <div class="intro" aria-hidden="true">
     <div class="intro-backdrop"></div>
     <div class="intro-stage">
-      <svg class="intro-pole intro-pole-left" viewBox="0 0 64 312"><use href="#barber-pole"/></svg>
+      <div class="intro-pole intro-pole-left"><svg viewBox="0 0 64 312"><use href="#barber-pole"/></svg><span class="pole-cover"></span></div>
       <div class="intro-logo"><img src="assets/alexsima-logo.webp" alt="" width="820" height="820"><span class="intro-shine"></span></div>
-      <svg class="intro-pole intro-pole-right" viewBox="0 0 64 312"><use href="#barber-pole"/></svg>
+      <div class="intro-pole intro-pole-right"><svg viewBox="0 0 64 312"><use href="#barber-pole"/></svg><span class="pole-cover"></span></div>
     </div>
-    <p class="intro-hint"><span class="hint-pointer">Mișcă cursorul și atinge logo-ul. Click oriunde pentru a intra.</span><span class="hint-touch">Atinge logo-ul. Atinge oriunde pentru a intra.</span></p>
   </div>
 
   <a class="skip-link" href="#main">Sari la conținut</a>
@@ -82,7 +80,7 @@
       <div class="hero-content">
         <p class="eyebrow">Barber Studio · Brașov</p>
         <h1 id="hero-title">Alex Sima</h1>
-        <svg class="rule-ornament" aria-hidden="true" viewBox="0 0 220 12"><path d="M0 6h92M128 6h92"/><path d="m110 0 6 6-6 6-6-6Z"/><circle cx="98" cy="6" r="1.6"/><circle cx="122" cy="6" r="1.6"/></svg>
+        
         <p class="hero-lead">Tunsori precise, fade-uri perfecte și tehnică de top.</p>
         <div class="hero-actions"><a class="btn" href="#programare">Programează-te</a><a class="btn btn-outline" href="#servicii">Servicii și prețuri</a></div>
       </div>
@@ -113,7 +111,7 @@
 
     <section class="section services" id="servicii" aria-labelledby="services-title">
       <div class="container">
-        <header class="section-head reveal"><p class="eyebrow">Servicii</p><h2 id="services-title">Servicii și prețuri</h2><svg class="rule-ornament" aria-hidden="true" viewBox="0 0 220 12"><path d="M0 6h92M128 6h92"/><path d="m110 0 6 6-6 6-6-6Z"/><circle cx="98" cy="6" r="1.6"/><circle cx="122" cy="6" r="1.6"/></svg><p>Prețurile și duratele sunt cele afișate în profilul MERO al studioului.</p></header>
+        <header class="section-head reveal"><p class="eyebrow">Servicii</p><h2 id="services-title">Servicii și prețuri</h2><p>Prețurile și duratele sunt cele afișate în profilul MERO al studioului.</p></header>
         <div class="price-board reveal">
           <article class="price-item"><div class="price-line"><h3>Tuns clasic</h3><span class="leader" aria-hidden="true"></span><strong>50 lei</strong></div><p>Tuns clasic, cu finisaj curat. Spălare opțională, 15 lei.</p><div class="price-meta"><span><svg aria-hidden="true"><use href="#clock"/></svg>40 min</span><button class="book-link" type="button" data-mero="67aaf8acb6448d251b995a5f">Programează <svg aria-hidden="true"><use href="#chevron"/></svg></button></div></article>
           <article class="price-item"><div class="price-line"><h3>Skin fade / crop fade</h3><span class="leader" aria-hidden="true"></span><strong>70 lei</strong></div><p>Spălare înainte de tuns, fade premium și styling final.</p><div class="price-meta"><span><svg aria-hidden="true"><use href="#clock"/></svg>50 min</span><button class="book-link" type="button" data-mero="67aaf7a8b6448d74b09938eb">Programează <svg aria-hidden="true"><use href="#chevron"/></svg></button></div></article>
@@ -127,7 +125,7 @@
 
     <section class="section gallery-section" id="galerie" aria-labelledby="gallery-title">
       <div class="container">
-        <header class="section-head reveal"><p class="eyebrow">Portofoliu</p><h2 id="gallery-title">Galerie</h2><svg class="rule-ornament" aria-hidden="true" viewBox="0 0 220 12"><path d="M0 6h92M128 6h92"/><path d="m110 0 6 6-6 6-6-6Z"/><circle cx="98" cy="6" r="1.6"/><circle cx="122" cy="6" r="1.6"/></svg><p>Lucrări realizate în studio. Apasă pe o fotografie pentru a o vedea mare.</p></header>
+        <header class="section-head reveal"><p class="eyebrow">Portofoliu</p><h2 id="gallery-title">Galerie</h2><p>Lucrări realizate în studio. Apasă pe o fotografie pentru a o vedea mare.</p></header>
         <div class="gallery-filters reveal" role="group" aria-label="Filtrează galeria"><button type="button" data-filter="all" aria-pressed="true">Toate</button><button type="button" data-filter="cuts" aria-pressed="false">Fade-uri</button><button type="button" data-filter="beard" aria-pressed="false">Barbă</button><button type="button" data-filter="studio" aria-pressed="false">Studio</button></div>
         <div class="gallery-grid" id="gallery-grid"></div>
         <noscript><div class="gallery-grid"><img src="assets/textured-crop.jpg" alt="Crop fade"><img src="assets/low-fade.jpg" alt="Low fade"><img src="assets/full-beard.jpg" alt="Fade și barbă lungă"></div></noscript>
@@ -137,7 +135,7 @@
 
     <section class="section booking" id="programare" aria-labelledby="booking-title">
       <div class="container">
-        <header class="section-head reveal"><p class="eyebrow">Programări</p><h2 id="booking-title">Programează-te online</h2><svg class="rule-ornament" aria-hidden="true" viewBox="0 0 220 12"><path d="M0 6h92M128 6h92"/><path d="m110 0 6 6-6 6-6-6Z"/><circle cx="98" cy="6" r="1.6"/><circle cx="122" cy="6" r="1.6"/></svg><p>Calendarul de mai jos este cel al studioului din MERO. Alegi serviciul, ziua și ora, iar confirmarea vine pe telefon.</p></header>
+        <header class="section-head reveal"><p class="eyebrow">Programări</p><h2 id="booking-title">Programează-te online</h2><p>Calendarul de mai jos este cel al studioului din MERO. Alegi serviciul, ziua și ora, iar confirmarea vine pe telefon.</p></header>
         <div class="booking-grid reveal">
           <aside class="booking-info">
             <label class="booking-select" for="booking-service"><span>Serviciu</span><select id="booking-service"><option value="">Toate serviciile</option><option value="67aaf8acb6448d251b995a5f">Tuns clasic, 50 lei</option><option value="67aaf7a8b6448d74b09938eb">Skin fade / crop fade, 70 lei</option><option value="67aaf85eb6448dfb06995059">Tuns + barbă, 80 lei</option><option value="67a5c115d1bbcff86002b278">VIP Experience, 100 - 120 lei</option><option value="68a6ce696d1163a878f8122a">Tuns copii, sub 10 ani, 50 lei</option><option value="68a6cee26d1163a878f822be">Tuns barbă / contur, 30 lei</option></select></label>
@@ -156,7 +154,7 @@
 
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <header class="section-head reveal"><p class="eyebrow">Contact</p><h2 id="contact-title">Vizitează studioul</h2><svg class="rule-ornament" aria-hidden="true" viewBox="0 0 220 12"><path d="M0 6h92M128 6h92"/><path d="m110 0 6 6-6 6-6-6Z"/><circle cx="98" cy="6" r="1.6"/><circle cx="122" cy="6" r="1.6"/></svg></header>
+        <header class="section-head reveal"><p class="eyebrow">Contact</p><h2 id="contact-title">Vizitează studioul</h2></header>
         <div class="contact-cards">
           <article class="contact-card reveal"><svg aria-hidden="true"><use href="#pin"/></svg><h3>Adresă</h3><p>Strada Neptun 30<br>Brașov 500352</p><p class="muted">Intrarea se face prin stânga clădirii.</p><a class="text-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Alex%20Sima%20Barber%20Studio%2C%20Strada%20Neptun%2030%2C%20Bra%C8%99ov%2C%20Romania" target="_blank" rel="noopener noreferrer">Indicații în Google Maps <svg aria-hidden="true"><use href="#external"/></svg></a></article>
           <article class="contact-card reveal"><svg aria-hidden="true"><use href="#clock"/></svg><h3>Program</h3><dl class="hours"><div><dt>Luni - vineri</dt><dd>10:00 - 19:00</dd></div><div><dt>Sâmbătă</dt><dd>10:30 - 17:30</dd></div><div><dt>Duminică</dt><dd>Închis</dd></div></dl></article>

@@ -20,18 +20,19 @@
   window.matchMedia('(min-width: 901px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
 
   // Gallery: a filterable mosaic, browsed in a lightbox with thumbnails.
+  // Four columns of equal cells with the studio shot spanning two: the grid closes as a square.
   const photos = [
-    {src:'assets/textured-crop.jpg',title:'Crop fade',category:'cuts',size:'tall',alt:'Crop fade cu textură pe creștet, din profil'},
-    {src:'assets/alex-at-work.jpg',title:'Alexandru Sima la lucru',category:'studio',size:'wide',alt:'Alexandru Sima lucrează cu foarfeca la o tunsoare, în studio'},
-    {src:'assets/low-fade.jpg',title:'Low fade',category:'cuts',size:'tall',alt:'Low fade cu păr texturat, din profil'},
-    {src:'assets/full-beard.jpg',title:'Fade și barbă lungă',category:'beard',size:'',alt:'Fade scurt și barbă lungă conturată, din profil'},
-    {src:'assets/mid-fade.jpg',title:'Mid fade',category:'cuts',size:'tall',alt:'Mid fade văzut din spate, cu tranziție curată'},
-    {src:'assets/fade-beard-profile.jpg',title:'Fade și barbă',category:'beard',size:'tall',alt:'Fade cu păr scurt texturat și barbă conturată, din profil'},
-    {src:'assets/modern-mullet.jpg',title:'Mullet modern',category:'cuts',size:'',alt:'Mullet modern cu breton texturat și fade lateral'},
-    {src:'assets/studio-interior.jpg',title:'Studioul',category:'studio',size:'tall',alt:'Interiorul studioului, cu scaun de frizerie, oglindă și chiuvetă'},
-    {src:'assets/crew-cut.jpg',title:'Crew cut',category:'cuts',size:'',alt:'Crew cut scurt cu fade, din lateral'},
-    {src:'assets/curly-fade.jpg',title:'Bucle și taper fade',category:'cuts',size:'tall',alt:'Păr creț pe creștet cu taper fade la ceafă'},
-    {src:'assets/texture-fade.jpg',title:'Textură și fade',category:'beard',size:'',alt:'Fade cu textură și barbă scurtă, din profil'}
+    {src:'assets/textured-crop.jpg',title:'Crop fade',category:'cuts',alt:'Crop fade cu textură pe creștet, din profil'},
+    {src:'assets/low-fade.jpg',title:'Low fade',category:'cuts',alt:'Low fade cu păr texturat, din profil'},
+    {src:'assets/full-beard.jpg',title:'Fade și barbă lungă',category:'beard',alt:'Fade scurt și barbă lungă conturată, din profil'},
+    {src:'assets/mid-fade.jpg',title:'Mid fade',category:'cuts',alt:'Mid fade văzut din spate, cu tranziție curată'},
+    {src:'assets/fade-beard-profile.jpg',title:'Fade și barbă',category:'beard',alt:'Fade cu păr scurt texturat și barbă conturată, din profil'},
+    {src:'assets/alex-at-work.jpg',title:'Alexandru Sima la lucru',category:'studio',wide:true,alt:'Alexandru Sima lucrează cu foarfeca la o tunsoare, în studio'},
+    {src:'assets/modern-mullet.jpg',title:'Mullet modern',category:'cuts',alt:'Mullet modern cu breton texturat și fade lateral'},
+    {src:'assets/crew-cut.jpg',title:'Crew cut',category:'cuts',alt:'Crew cut scurt cu fade, din lateral'},
+    {src:'assets/curly-fade.jpg',title:'Bucle și taper fade',category:'cuts',alt:'Păr creț pe creștet cu taper fade la ceafă'},
+    {src:'assets/texture-fade.jpg',title:'Textură și fade',category:'beard',alt:'Fade cu textură și barbă scurtă, din profil'},
+    {src:'assets/studio-interior.jpg',title:'Studioul',category:'studio',alt:'Interiorul studioului, cu scaun de frizerie, oglindă și chiuvetă'}
   ];
   const grid = $('#gallery-grid');
   const lightbox = $('#lightbox');
@@ -44,7 +45,7 @@
   const items = photos.map(photo => {
     const item = document.createElement('button');
     item.type = 'button';
-    item.className = `gallery-item reveal${photo.size ? ` is-${photo.size}` : ''}`;
+    item.className = photo.wide ? 'gallery-item is-wide' : 'gallery-item';
     item.setAttribute('aria-label', `${photo.title}, deschide fotografia`);
     const img = document.createElement('img');
     img.src = photo.src; img.alt = photo.alt; img.loading = 'lazy'; img.decoding = 'async';

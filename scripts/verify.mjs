@@ -17,9 +17,9 @@ for (const url of ['https://mero.ro/p/alex-sima','https://www.instagram.com/alex
 assert(html.includes("classList.add('intro-on')") && html.includes('class="intro"'),'Logo intro missing');
 assert(introCss.includes('intro-failsafe'),'Logo intro needs a CSS failsafe');
 assert.equal((html.match(/class="intro-pole /g) || []).length,2,'Logo intro needs a barber pole on each side');
-assert(html.includes('id="mero-frame"') && html.includes('src="https://mero.ro/p/alex-sima"'),'MERO booking calendar must be embedded in the page');;
+assert(html.includes('id="mero-frame"') && html.includes('src="https://mero.ro/p/alex-sima"'),'MERO booking calendar must be embedded in the page');
 assert(!/>\s*0\d\s*(\/|<)/.test(html),'Section numbering like 01 / 02 is not part of this design');
-assert(html.includes('<use href="#barber-pole"/>') && html.includes('id="pole-fill-level"'),'Barber poles must be SVG');
+assert(html.includes('<use href="#barber-pole"/>') && html.includes('class="pole-cover"'),'Barber poles must be SVG');
 for (const match of html.matchAll(/data-mero="([^"]*)"/g)) assert(/^[0-9a-f]{24}$/.test(match[1]),`Invalid MERO service id: ${match[1]}`);
 for (const match of html.matchAll(/<option value="([^"]+)"/g)) assert(/^[0-9a-f]{24}$/.test(match[1]),`Invalid MERO service id in the booking menu: ${match[1]}`);
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
