@@ -246,8 +246,11 @@ h3{font:700 20px/1.3 var(--display);letter-spacing:.4px}
 @media(max-width:560px){
   .container{width:calc(100% - 32px)}
   .section{padding:84px 0}
-  .hero{padding:56px 18px 170px}
+  /* On phones the near-square crop sits at the top at its own proportions, then fades into the page under the text. */
+  .hero{align-items:end;padding:0 18px 168px}
   .hero h1{white-space:normal}
+  .hero-image{bottom:auto;height:min(108vw,62%);object-position:center top;filter:grayscale(.2) sepia(.25) brightness(.85) contrast(1.05);-webkit-mask-image:linear-gradient(#000 58%,transparent);mask-image:linear-gradient(#000 58%,transparent)}
+  .hero::before{background:linear-gradient(180deg,rgba(11,9,7,.15),rgba(11,9,7,.05) 30%,rgba(11,9,7,.55) 58%,var(--bg) 82%)}
   .hero-frame{inset:12px}
   .hero-actions{flex-direction:column;align-items:stretch}
   .hero-facts{flex-direction:column;align-items:stretch;bottom:28px;width:calc(100% - 48px)}
