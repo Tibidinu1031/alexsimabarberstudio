@@ -150,7 +150,7 @@ h3{font:700 20px/1.3 var(--display);letter-spacing:.4px}
 
 /* Booking: the studio's MERO calendar inside the page. */
 .booking-grid{display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:stretch}
-.booking-info{display:grid;align-content:start;gap:22px;padding:30px 28px;background:rgba(22,18,12,.9);border:1px solid var(--gold);box-shadow:0 0 0 7px var(--bg-alt),0 0 0 8px var(--line-strong)}
+.booking-info{display:grid;align-content:center;gap:22px;padding:30px 28px;background:rgba(22,18,12,.9);border:1px solid var(--gold);box-shadow:0 0 0 7px var(--bg-alt),0 0 0 8px var(--line-strong)}
 .booking-select{display:grid;gap:8px;padding-bottom:22px;border-bottom:1px solid var(--line)}
 .booking-select span{font-size:12px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold)}
 .booking-select select{width:100%;min-height:48px;padding:10px 40px 10px 14px;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a24c' stroke-width='1.6'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 12px center/18px no-repeat;border:1px solid var(--line-strong);color:var(--text);font-size:15px;appearance:none;-webkit-appearance:none;cursor:pointer}

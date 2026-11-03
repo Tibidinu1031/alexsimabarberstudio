@@ -12,10 +12,10 @@
 .intro .intro-logo.is-struck{animation:intro-strike .7s var(--ease)}
 .intro .intro-logo.is-struck .intro-shine{animation:intro-sweep .9s ease-in-out}
 /* The poles share one SVG symbol. A dark glass cover shrinks off the stripes with a transform, so the fill stays smooth while the page is still busy loading. */
-.intro-pole{position:relative;height:min(340px,40vh,66vw);aspect-ratio:64/312;transform:translate(calc(var(--px,0) * -14px),calc(var(--py,0) * -8px));transition:transform .5s var(--ease),filter .6s;animation:intro-pole-in .8s cubic-bezier(.2,.9,.25,1) both}
+.intro-pole{position:relative;height:min(310px,37vh,62vw);aspect-ratio:80/300;transform:translate(calc(var(--px,0) * -14px),calc(var(--py,0) * -8px));transition:transform .5s var(--ease),filter .6s;animation:intro-pole-in .8s cubic-bezier(.2,.9,.25,1) both}
 .intro-pole svg{display:block;width:100%;height:100%;overflow:visible}
 .intro-pole-right{transform:translate(calc(var(--px,0) * 14px),calc(var(--py,0) * -8px));animation-delay:.08s}
-.pole-cover{position:absolute;left:17.19%;width:65.63%;top:12.82%;height:75.64%;transform-origin:top;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(255,255,255,.1) 26%,rgba(255,255,255,.03) 42%,rgba(0,0,0,.18) 70%,rgba(0,0,0,.62)),#140f08;will-change:transform;animation:pole-fill 2.2s .3s cubic-bezier(.3,.1,.3,1) both}
+.pole-cover{position:absolute;left:15%;width:70%;top:12.33%;height:76%;transform-origin:top;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(255,255,255,.1) 26%,rgba(255,255,255,.03) 42%,rgba(0,0,0,.18) 70%,rgba(0,0,0,.62)),#140f08;will-change:transform;animation:pole-fill 2.2s .3s cubic-bezier(.3,.1,.3,1) both}
 .intro.is-filled .pole-cover{animation:pole-fill-end .55s cubic-bezier(.3,.1,.3,1) both}
 .intro.is-filled .intro-pole{filter:drop-shadow(0 0 14px rgba(241,213,140,.35))}
 .intro.is-leaving{pointer-events:none}
@@ -36,5 +36,5 @@
 @keyframes intro-rise{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
 @keyframes intro-fade{from{opacity:0}to{opacity:1}}
 @keyframes intro-failsafe{to{opacity:0;visibility:hidden}}
-@media(max-width:560px){.intro-stage{gap:12px}.intro-logo{width:min(58vw,280px)}.intro-pole{height:min(250px,34vh)}}
+@media(max-width:560px){.intro-stage{gap:12px}.intro-logo{width:min(54vw,270px)}.intro-pole{height:min(230px,30vh)}}
 @media(prefers-reduced-motion:reduce){.intro-logo,.intro-pole,.intro-pole-right{transform:none}.pole-cover{display:none}}
