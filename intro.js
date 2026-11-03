@@ -40,6 +40,7 @@
       intro.remove();
       root.classList.remove('intro-on');
       if (!reducedMotion) root.classList.add('intro-done');
+      window.dispatchEvent(new Event('intro:done'));
     }, reducedMotion ? 0 : 1000);
   }
   function setSpin(fast) {

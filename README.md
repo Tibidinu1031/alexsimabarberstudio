@@ -30,14 +30,28 @@ Deschide `http://localhost:4173`.
 
 ## Stil
 
-Barbershop clasic, negru cu auriu, în spiritul logo-ului. Tot stilul paginii e în `site.css`:
+Barbershop clasic, negru cu auriu, în spiritul logo-ului. Stilul paginii e în `site.css`, iar efectele interactive în `interactions.css` și `interactions.js`:
 
 - Header cu emblema în centru și meniul împărțit stânga-dreapta. Pe telefon, emblema cu numele și un meniu.
 - Hero pe toată lățimea, cu fotografia din studio, ramă aurie dublă și o bară cu evaluarea, adresa și statusul „Deschis acum”.
-- Secțiuni cu titluri centrate, ornament auriu și fundalul cu romburi și stele din `assets/old-school-pattern.svg`.
+- Fundal old-school pe fiecare secțiune și în footer: un model de tablă presată, cu romburi duble, stele și rozete aurii (`assets/old-school-pattern.svg`), o lumină caldă de sus, margini întunecate ca la o fotografie veche, colțare aurii și o linie aurie dublă între secțiuni.
+- Secțiuni cu titluri centrate.
 - Servicii afișate ca o listă de prețuri de frizerie, cu linie punctată între serviciu și preț.
 - Galerie mozaic cu filtre. Fotografia apăsată se deschide mare, cu miniaturi pentru răsfoit, săgeți, tastatură și glisare pe telefon.
 - `assets/fonts.css`: Cinzel pentru titluri, Playfair Display Italic pentru accente și DM Sans pentru text.
+
+## Interacțiuni pe secțiuni
+
+- **Fundal:** cu mouse-ul, o lampă aurie luminează modelul de sub cursor, în fiecare secțiune.
+- **Hero:** fotografia, rama și textul stau la adâncimi diferite și se mișcă ușor după cursor, sub o lumină caldă care îl urmărește. La scroll, fotografia rămâne în urmă, iar textul se estompează. Peste numele „Alex Sima” trece o sclipire aurie după ecranul de deschidere și ori de câte ori treci cu mouse-ul peste el. Evaluarea 4.98 și cele 434 de evaluări numără crescător.
+- **Despre:** fotografia în arcadă se înclină după cursor, cu o sclipire, și capătă culoare. Cardurile se ridică, prind lumină sub cursor și își mișcă iconița. Cifrele din primul card numără crescător.
+- **Servicii:** rândurile listei de prețuri apar pe rând. Rândul de sub cursor se luminează, punctele dintre serviciu și preț curg spre preț, prețul strălucește și lângă rând se rotește un mic stâlp de frizerie.
+- **Galerie:** fotografiile apar pe rând și se înclină după cursor, cu o sclipire. La filtrare, cele care pleacă dispar, celelalte alunecă pe noile locuri, iar cele noi intră una după alta. O plăcuță aurie alunecă între filtre, iar fiecare filtru arată câte fotografii are. În fotografia mare, imaginile alunecă în direcția în care răsfoiești.
+- **Programare:** bara calendarului afișează serviciul ales, iar calendarul și meniul **Serviciu** clipesc auriu când alegi un serviciu, inclusiv din lista de prețuri. Punctul verde „Deschis acum” pulsează.
+- **Contact:** cardurile se ridică și își animă iconițele: pinul sare, ceasul se rotește, telefonul sună. Harta capătă culoare, iar fotografia studioului se apropie.
+- **Butoane și embleme:** butoanele au o sclipire metalică la hover și un val de lumină la apăsare. Emblema din header se rotește puțin, iar cea din footer se întoarce ca o monedă.
+
+Pe telefon rămân efectele care nu au nevoie de mouse: numărătorile, intrările pe rând, filtrarea animată, fotografia din hero la scroll și răspunsul la atingere. Cu mișcare redusă, toate efectele sunt oprite, iar cifrele apar direct.
 
 ## Ecranul de deschidere
 

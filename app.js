@@ -57,18 +57,82 @@
     return item;
   });
 
-  $$('[data-filter]').forEach(button => button.addEventListener('click', () => {
-    $$('[data-filter]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
-    const filter = button.dataset.filter;
-    visible = photos.filter(photo => filter === 'all' || photo.category === filter);
-    items.forEach((item, index) => { item.hidden = !visible.includes(photos[index]); });
+  // Filtering animates: photos that leave fade out, the rest glide to their new cells, newcomers rise in one after another.
+  const filterBar = $('.gallery-filters');
+  const filterButtons = $$('[data-filter]', filterBar);
+  const matches = filter => photos.filter(photo => filter === 'all' || photo.category === filter);
+  const glide = 'cubic-bezier(.22,1,.36,1)';
+  let filterRun = 0;
+  function applyFilter(filter) {
+    const next = matches(filter);
+    const run = ++filterRun;
+    visible = next;
+    const show = () => items.forEach((item, index) => { item.hidden = !next.includes(photos[index]); });
+    if (reducedMotion || !grid.animate) { show(); return; }
+    items.forEach(item => item.getAnimations().forEach(animation => animation.cancel()));
+    grid.getAnimations().forEach(animation => animation.cancel());
+    const before = new Map(items.filter(item => !item.hidden).map(item => [item, item.getBoundingClientRect()]));
+    const gridBefore = grid.offsetHeight;
+    const leaving = items.filter((item, index) => !item.hidden && !next.includes(photos[index]));
+    const fades = leaving.map(item => item.animate([{opacity:1, scale:1}, {opacity:0, scale:.9}], {duration:200, easing:'ease-in', fill:'forwards'}));
+    Promise.all(fades.map(animation => animation.finished.catch(() => {}))).then(() => {
+      if (run !== filterRun) return;
+      show();
+      fades.forEach(animation => animation.cancel());
+      let entering = 0;
+      items.filter(item => !item.hidden).forEach(item => {
+        const from = before.get(item);
+        const to = item.getBoundingClientRect();
+        if (from) {
+          const dx = from.left - to.left, dy = from.top - to.top;
+          if (Math.abs(dx) > .5 || Math.abs(dy) > .5) item.animate([{translate:`${dx}px ${dy}px`}, {translate:'0 0'}], {duration:560, easing:glide});
+        } else {
+          item.animate([{opacity:0, scale:.84, translate:'0 18px'}, {opacity:1, scale:1, translate:'0 0'}], {duration:520, delay:entering++ * 55, easing:glide, fill:'backwards'});
+        }
+      });
+      const gridAfter = grid.offsetHeight;
+      if (gridAfter !== gridBefore) grid.animate([{height:`${gridBefore}px`}, {height:`${gridAfter}px`}], {duration:560, easing:glide});
+    });
+  }
+
+  // A gold plate slides behind the active filter, and each filter shows how many photos it holds.
+  const plate = document.createElement('span');
+  plate.className = 'filter-plate';
+  plate.setAttribute('aria-hidden', 'true');
+  filterBar.prepend(plate);
+  filterBar.classList.add('has-plate');
+  filterButtons.forEach(button => {
+    const count = document.createElement('small');
+    count.textContent = matches(button.dataset.filter).length;
+    button.append(count);
+  });
+  function movePlate() {
+    const active = filterButtons.find(button => button.getAttribute('aria-pressed') === 'true');
+    if (!active) return;
+    plate.style.width = `${active.offsetWidth}px`;
+    plate.style.height = `${active.offsetHeight}px`;
+    plate.style.transform = `translate(${active.offsetLeft}px, ${active.offsetTop}px)`;
+  }
+  movePlate();
+  requestAnimationFrame(() => filterBar.classList.add('plate-ready'));
+  window.addEventListener('resize', movePlate, {passive:true});
+  if (document.fonts) document.fonts.ready.then(movePlate);
+
+  filterButtons.forEach(button => button.addEventListener('click', () => {
+    if (button.getAttribute('aria-pressed') === 'true') return;
+    filterButtons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+    movePlate();
+    applyFilter(button.dataset.filter);
   }));
 
-  function paintLightbox() {
+  function paintLightbox(direction = 0) {
     const photo = visible[current];
     lightboxImage.src = photo.src;
     lightboxImage.alt = photo.alt;
     lightboxTitle.textContent = photo.title;
+    if (direction && !reducedMotion && lightboxImage.animate) {
+      lightboxImage.animate([{opacity:0, translate:`${direction * 36}px 0`, scale:.97}, {opacity:1, translate:'0 0', scale:1}], {duration:380, easing:glide});
+    }
     $$('button', thumbs).forEach((thumb, index) => {
       const active = index === current;
       thumb.setAttribute('aria-current', String(active));
@@ -84,14 +148,14 @@
       const img = document.createElement('img');
       img.src = photo.src; img.alt = ''; img.loading = 'lazy';
       thumb.append(img);
-      thumb.addEventListener('click', () => { current = thumbIndex; paintLightbox(); });
+      thumb.addEventListener('click', () => { const direction = Math.sign(thumbIndex - current); current = thumbIndex; paintLightbox(direction); });
       return thumb;
     }));
     paintLightbox();
     if (!lightbox.open) lightbox.showModal();
     document.body.classList.add('modal-open');
   }
-  function step(direction) { current = (current + direction + visible.length) % visible.length; paintLightbox(); }
+  function step(direction) { current = (current + direction + visible.length) % visible.length; paintLightbox(direction); }
   $('.lightbox-prev').addEventListener('click', () => step(-1));
   $('.lightbox-next').addEventListener('click', () => step(1));
   $('[data-close-lightbox]').addEventListener('click', () => lightbox.close());
