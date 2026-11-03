@@ -18,12 +18,14 @@
   <link rel="preload" href="assets/alexsima-logo.webp" as="image" type="image/webp">
   <script>document.documentElement.classList.add('intro-on');</script>
   <link rel="stylesheet" href="assets/fonts.css?v=5">
-  <link rel="stylesheet" href="site.css?v=6">
-  <link rel="stylesheet" href="intro.css?v=8">
-  <script src="intro.js?v=5" defer></script>
-  <script src="app.js?v=6" defer></script>
+  <link rel="stylesheet" href="site.css?v=7">
+  <link rel="stylesheet" href="interactions.css?v=1">
+  <link rel="stylesheet" href="intro.css?v=9">
+  <script src="intro.js?v=6" defer></script>
+  <script src="app.js?v=7" defer></script>
   <script src="booking-core.js?v=2" defer></script>
-  <script src="booking.js?v=5" defer></script>
+  <script src="booking.js?v=6" defer></script>
+  <script src="interactions.js?v=1" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"HairSalon","name":"Alex Sima Barber Studio","url":"https://tibidinu1031.github.io/alexsimabarberstudio/","logo":"https://tibidinu1031.github.io/alexsimabarberstudio/assets/alexsima-logo.jpg","image":"https://tibidinu1031.github.io/alexsimabarberstudio/assets/fade-beard-profile.jpg","telephone":"+40757651403","priceRange":"30-120 RON","address":{"@type":"PostalAddress","streetAddress":"Strada Neptun 30","addressLocality":"Brașov","addressRegion":"Brașov","postalCode":"500352","addressCountry":"RO"},"geo":{"@type":"GeoCoordinates","latitude":45.6415164,"longitude":25.6369792},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:30","closes":"17:30"}],"sameAs":["https://mero.ro/p/alex-sima","https://www.instagram.com/alexsimabarberstudio/","https://www.facebook.com/p/Alex-Sima-Barber-Studio-61584611043215/"]}</script>
 </head>
 <body>
@@ -85,7 +87,7 @@
         <div class="hero-actions"><a class="btn" href="#programare">Programează-te</a><a class="btn btn-outline" href="#servicii">Servicii și prețuri</a></div>
       </div>
       <ul class="hero-facts">
-        <li><svg aria-hidden="true"><use href="#star"/></svg><span><strong>4.98</strong> din 434 de evaluări pe MERO</span></li>
+        <li><svg aria-hidden="true"><use href="#star"/></svg><span><strong data-count="4.98" data-decimals="2">4.98</strong> din <span data-count="434">434</span> de evaluări pe MERO</span></li>
         <li><svg aria-hidden="true"><use href="#pin"/></svg><span>Strada Neptun 30, Brașov</span></li>
         <li class="open-status" data-open-status><i class="status-dot"></i><span data-status-text>Luni - vineri 10:00 - 19:00</span></li>
       </ul>
@@ -103,7 +105,7 @@
         </div>
       </div>
       <div class="container features">
-        <article class="feature reveal"><svg aria-hidden="true"><use href="#star"/></svg><h3>4.98 din 5</h3><p>Media celor 434 de evaluări lăsate de clienți pe MERO.</p></article>
+        <article class="feature reveal"><svg aria-hidden="true"><use href="#star"/></svg><h3><span data-count="4.98" data-decimals="2">4.98</span> din 5</h3><p>Media celor <span data-count="434">434</span> de evaluări lăsate de clienți pe MERO.</p></article>
         <article class="feature reveal"><svg aria-hidden="true"><use href="#parking"/></svg><h3>Locație liniștită</h3><p>Strada Neptun 30, departe de aglomerația bulevardelor, cu loc de parcare lângă studio.</p></article>
         <article class="feature reveal"><svg aria-hidden="true"><use href="#calendar"/></svg><h3>Programare online</h3><p>Alegi serviciul, ziua și ora direct pe site, în calendarul MERO al studioului.</p></article>
       </div>
@@ -144,7 +146,7 @@
             <div class="info-block"><svg aria-hidden="true"><use href="#pin"/></svg><div><h3>Adresă</h3><p>Strada Neptun 30, Brașov<br>Intrarea se face prin stânga clădirii.</p></div></div>
           </aside>
           <div class="booking-frame">
-            <div class="booking-frame-bar"><span><svg aria-hidden="true"><use href="#calendar"/></svg>Calendar MERO</span><a href="https://mero.ro/p/alex-sima" id="mero-open" target="_blank" rel="noopener noreferrer">Deschide în MERO <svg aria-hidden="true"><use href="#external"/></svg></a></div>
+            <div class="booking-frame-bar"><span><svg aria-hidden="true"><use href="#calendar"/></svg><b id="mero-label">Calendar MERO</b></span><a href="https://mero.ro/p/alex-sima" id="mero-open" target="_blank" rel="noopener noreferrer">Deschide în MERO <svg aria-hidden="true"><use href="#external"/></svg></a></div>
             <iframe id="mero-frame" title="Programare online la Alex Sima Barber Studio, prin MERO" src="https://mero.ro/p/alex-sima" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         </div>

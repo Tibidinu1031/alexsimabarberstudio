@@ -1,7 +1,7 @@
 /* Opening screen: the logo between two SVG barber poles that fill up while the page loads. It exists only while html.intro-on is set by the inline head script. */
 .intro{display:none}
 .intro-on .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:300;cursor:pointer;overflow:hidden;-webkit-user-select:none;user-select:none;animation:intro-failsafe .4s 9s forwards}
-.intro-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(201,162,76,.14),transparent 55%),url('assets/old-school-pattern.svg') center/96px 96px,var(--bg);transition:opacity .8s var(--ease) .25s}
+.intro-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(201,162,76,.14),transparent 55%),url('assets/old-school-pattern.svg') center/120px 120px,var(--bg);transition:opacity .8s var(--ease) .25s}
 .intro-backdrop::after{content:'';position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,50%) var(--my,45%),rgba(241,213,140,.1),transparent 65%),radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75))}
 .intro-stage{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,64px);perspective:1000px}
 .intro-logo{position:relative;width:min(460px,52vw,62vh);aspect-ratio:1;transform:rotateX(calc(var(--py,0) * -8deg)) rotateY(calc(var(--px,0) * 10deg));transition:transform .5s var(--ease);animation:intro-logo-in 1.1s .2s cubic-bezier(.2,.9,.25,1) both}
