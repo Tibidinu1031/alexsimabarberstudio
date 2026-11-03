@@ -1,7 +1,6 @@
 (() => {
   'use strict';
   const core = window.BookingCore;
-  const section = document.getElementById('programari');
   if (!core) return;
 
   // Every [data-open-status] element shows whether the studio is open right now.
@@ -14,27 +13,22 @@
     });
   }
   if (statuses.length) { paintStatus(); setInterval(paintStatus, 60000); }
-  if (!section) return;
 
-  const $ = selector => section.querySelector(selector);
-  const link = $('#mero-link');
-  function update() {
-    const input = $('input[name="appointment-service"]:checked');
-    $('#summary-service').textContent = input.value;
-    $('#summary-duration').textContent = input.dataset.duration;
-    $('#summary-price').textContent = input.dataset.price;
-    link.href = core.meroLink(input.dataset.mero);
+  // The MERO calendar lives in the page; choosing a service loads its booking step there.
+  const section = document.getElementById('programare');
+  const frame = document.getElementById('mero-frame');
+  const select = document.getElementById('booking-service');
+  const openLink = document.getElementById('mero-open');
+  if (!section || !frame || !select) return;
+  function load(serviceId) {
+    const url = serviceId ? core.meroLink(serviceId) : core.mero.profile;
+    select.value = serviceId || '';
+    openLink.href = url;
+    if (frame.src !== url) frame.src = url;
   }
-  section.addEventListener('change', event => { if (event.target.name === 'appointment-service') update(); });
-  document.querySelectorAll('[data-book]').forEach(button => button.addEventListener('click', () => {
-    const toggle = document.querySelector('.menu-toggle');
-    if (toggle?.getAttribute('aria-expanded') === 'true') toggle.click();
-    if (button.dataset.book) {
-      const radio = [...section.querySelectorAll('input[name="appointment-service"]')].find(input => input.value === button.dataset.book);
-      if (radio) { radio.checked = true; update(); }
-    }
-    section.focus({preventScroll:true});
+  select.addEventListener('change', () => load(select.value));
+  document.querySelectorAll('[data-mero]').forEach(button => button.addEventListener('click', () => {
+    load(button.dataset.mero);
     section.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
   }));
-  update();
 })();

@@ -8,7 +8,7 @@ const bookingJs = fs.readFileSync(path.join(root,'booking.js'),'utf8');
 const bookingCore = fs.readFileSync(path.join(root,'booking-core.js'),'utf8');
 const introJs = fs.readFileSync(path.join(root,'intro.js'),'utf8');
 const introCss = fs.readFileSync(path.join(root,'intro.css'),'utf8');
-const css = ['style.css','booking.css','ornaments.css','hero.css','theme.css','intro.css'].map(name => fs.readFileSync(path.join(root,name),'utf8')).join('\n');
+const css = ['site.css','intro.css'].map(name => fs.readFileSync(path.join(root,name),'utf8')).join('\n');
 assert(!/[\u2013\u2014\u2015]/u.test(html+js+bookingJs+bookingCore+introJs),'Long dash found in page source');
 assert(!/har[ _]?studio|17CUTS|0729 ?053 ?642|frizetto|0745 ?494 ?412|wa\.me\/40745/i.test(html+js+bookingJs+bookingCore+css),'Previous client data left in page source');
 assert(html.includes('<html lang="ro">'),'Romanian language missing');
@@ -17,7 +17,11 @@ for (const url of ['https://mero.ro/p/alex-sima','https://www.instagram.com/alex
 assert(html.includes("classList.add('intro-on')") && html.includes('class="intro"'),'Logo intro missing');
 assert(introCss.includes('intro-failsafe'),'Logo intro needs a CSS failsafe');
 assert.equal((html.match(/class="intro-pole /g) || []).length,2,'Logo intro needs a barber pole on each side');
+assert(html.includes('id="mero-frame"') && html.includes('src="https://mero.ro/p/alex-sima"'),'MERO booking calendar must be embedded in the page');;
+assert(!/>\s*0\d\s*(\/|<)/.test(html),'Section numbering like 01 / 02 is not part of this design');
+assert(html.includes('<use href="#barber-pole"/>') && html.includes('id="pole-fill-level"'),'Barber poles must be SVG');
 for (const match of html.matchAll(/data-mero="([^"]*)"/g)) assert(/^[0-9a-f]{24}$/.test(match[1]),`Invalid MERO service id: ${match[1]}`);
+for (const match of html.matchAll(/<option value="([^"]+)"/g)) assert(/^[0-9a-f]{24}$/.test(match[1]),`Invalid MERO service id in the booking menu: ${match[1]}`);
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(ids.length,new Set(ids).size,'Duplicate HTML ids');
 for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
@@ -33,4 +37,4 @@ for (const match of fs.readFileSync(path.join(root,'assets/fonts.css'),'utf8').m
 assert(css.includes('prefers-reduced-motion'),'Reduced motion missing');
 assert(html.includes('output=embed'),'Google Maps missing');
 assert(fs.existsSync(path.join(root,'.nojekyll')),'.nojekyll missing');
-console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, MERO service ids, logo intro with barber poles, Google Maps, language, reduced motion, no long dashes, no previous client data.');
+console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, embedded MERO calendar, MERO service ids, no section numbering, logo intro with SVG barber poles, Google Maps, language, reduced motion, no long dashes, no previous client data.');

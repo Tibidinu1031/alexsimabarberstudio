@@ -5,6 +5,11 @@
   if (!intro || !root.classList.contains('intro-on')) return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const logo = intro.querySelector('.intro-logo');
+  // Both poles use the same SVG symbol, so one fill level and one stripe animation drive them together.
+  const library = document.querySelector('.svg-library');
+  const fillLevel = document.getElementById('pole-fill-level');
+  const spin = document.getElementById('pole-spin');
+  const glass = {top:40, height:236};
   const started = performance.now();
   // The poles creep towards full while the page loads and only top out once it has; striking the logo buys a little more time, never past the CSS failsafe.
   const minimumShow = reducedMotion ? 1400 : 3800;
@@ -15,7 +20,16 @@
   let leaving = false;
 
   const elapsed = () => performance.now() - started;
-  function setFill(value) { intro.style.setProperty('--fill', `${value.toFixed(1)}%`); }
+  function setFill(percent) {
+    const height = glass.height * percent / 100;
+    fillLevel.setAttribute('y', (glass.top + glass.height - height).toFixed(2));
+    fillLevel.setAttribute('height', height.toFixed(2));
+  }
+  let fastSpin = 0;
+  function setSpin(fast) {
+    fastSpin = Math.max(0, fastSpin + (fast ? 1 : -1));
+    spin.setAttribute('dur', fastSpin ? '.32s' : '1.2s');
+  }
   function fillStep() {
     if (leaving) return;
     const progress = Math.min(elapsed() / 2200, 1);
@@ -50,8 +64,8 @@
     logo.classList.remove('is-struck');
     void logo.offsetWidth;
     logo.classList.add('is-struck');
-    intro.classList.add('is-spinning');
-    setTimeout(() => intro.classList.remove('is-spinning'), 1200);
+    setSpin(true);
+    setTimeout(() => setSpin(false), 1200);
     if (filledAt) scheduleExit(2200);
   }
 
@@ -60,6 +74,10 @@
   intro.addEventListener('click', leave);
   if (!reducedMotion) {
     setTimeout(() => intro.classList.add('is-ready'), 2700);
+    intro.querySelectorAll('.intro-pole').forEach(pole => {
+      pole.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') setSpin(true); });
+      pole.addEventListener('pointerleave', event => { if (event.pointerType === 'mouse') setSpin(false); });
+    });
     intro.addEventListener('pointermove', event => {
       if (event.pointerType !== 'mouse') return;
       intro.style.setProperty('--px', (event.clientX / window.innerWidth * 2 - 1).toFixed(3));
@@ -76,6 +94,7 @@
   window.addEventListener('wheel', leave, {once:true, passive:true});
   window.addEventListener('touchmove', leave, {once:true, passive:true});
   if (reducedMotion) {
+    library.pauseAnimations();
     setFill(100);
     intro.classList.add('is-filled');
     filledAt = elapsed();

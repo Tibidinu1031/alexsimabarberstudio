@@ -30,17 +30,18 @@ Deschide `http://localhost:4173`.
 
 ## Stil
 
-Negru cu auriu, în spiritul logo-ului și al frizeriilor old school:
+Barbershop clasic, negru cu auriu, în spiritul logo-ului. Tot stilul paginii e în `site.css`:
 
-- `style.css`: layout-ul, culorile de bază în `:root` și tipografia comună.
-- `theme.css`: stratul negru cu auriu. Butoane și titluri cu auriu metalic, banda aurie care rulează, oglinda arcuită din hero, rame aurii duble, tonul sepia al fotografiilor și granulația fină a paginii.
-- `ornaments.css` și `assets/old-school-pattern.svg`: modelul cu romburi și stele aurii din fundal, colțurile și liniile ornamentale.
-- `hero.css`: încadrarea primului ecran pe toate dimensiunile.
-- `assets/fonts.css`: Cinzel pentru titluri, Playfair Display Italic pentru accente și DM Sans pentru text. Cinzel și Playfair au `size-adjust`, ca să încapă în aceleași cutii ca fonturile condensate pentru care a fost gândit layout-ul.
+- Header cu emblema în centru și meniul împărțit stânga-dreapta. Pe telefon, emblema cu numele și un meniu.
+- Hero pe toată lățimea, cu fotografia din studio, ramă aurie dublă și o bară cu evaluarea, adresa și statusul „Deschis acum”.
+- Secțiuni cu titluri centrate, ornament auriu și fundalul cu romburi și stele din `assets/old-school-pattern.svg`.
+- Servicii afișate ca o listă de prețuri de frizerie, cu linie punctată între serviciu și preț.
+- Galerie mozaic cu filtre. Fotografia apăsată se deschide mare, cu miniaturi pentru răsfoit, săgeți, tastatură și glisare pe telefon.
+- `assets/fonts.css`: Cinzel pentru titluri, Playfair Display Italic pentru accente și DM Sans pentru text.
 
 ## Ecranul de deschidere
 
-La încărcare, logo-ul apare în centru, între doi stâlpi de frizerie roșu, alb și albastru. Dungile stâlpilor se umplu de jos în sus cât timp se încarcă pagina și ajung sus abia după ce s-a încărcat. Apoi bilele aurii se aprind. Dungile se rotesc continuu și accelerează când treci cu mouse-ul peste un stâlp. Logo-ul se înclină după cursor și o lumină aurie îl urmărește. Click sau atingere pe logo îl face să pulseze și rotește stâlpii mai repede.
+La încărcare, logo-ul apare în centru, între doi stâlpi de frizerie roșu, alb și albastru, desenați în SVG (simbolul `#barber-pole` din `index.html`). Ambii stâlpi folosesc același simbol, așa că se umplu și se rotesc împreună. Dungile se umplu de jos în sus cât timp se încarcă pagina și ajung sus abia după ce s-a încărcat. Apoi stâlpii capătă un halou auriu. Dungile se rotesc continuu și accelerează când treci cu mouse-ul peste un stâlp. Logo-ul se înclină după cursor și o lumină aurie îl urmărește. Click sau atingere pe logo îl face să pulseze și rotește stâlpii mai repede.
 
 Ecranul dispare după cel puțin 3,8 secunde, odată ce stâlpii sunt plini, sau imediat la click în afara logo-ului, tastă, scroll sau glisare. Nu rămâne mai mult de 8,5 secunde. O animație CSS îl ascunde după 9 secunde dacă JavaScript nu rulează. Cu mișcare redusă, logo-ul și stâlpii apar plini, fără animații.
 
@@ -48,9 +49,11 @@ Ecranul dispare după cel puțin 3,8 secunde, odată ce stâlpii sunt plini, sau
 
 ## Programări prin MERO
 
-MERO nu are API public și nici widget de inclus în alte site-uri, dar are link-uri directe spre pasul de programare. Secțiunea **Programări** afișează cele șase servicii de pe profilul [mero.ro/p/alex-sima](https://mero.ro/p/alex-sima), cu durată și preț. Serviciul ales deschide MERO într-o filă nouă, direct la pasul 2 din 3, cu Alexandru Sima și serviciul deja selectate. Acolo vizitatorul alege ziua și ora din locurile libere reale, iar programarea se confirmă pe telefon.
+Calendarul MERO al studioului e inclus direct în pagină, în secțiunea **Programare**, într-un iframe cu profilul [mero.ro/p/alex-sima](https://mero.ro/p/alex-sima). Vizitatorul alege serviciul, ziua și ora fără să părăsească site-ul. Butoanele **Programează** din lista de prețuri și meniul **Serviciu** de lângă calendar încarcă direct pasul 2 din 3, cu Alexandru Sima și serviciul respectiv deja selectate.
 
-ID-urile serviciilor sunt în atributele `data-mero` din `index.html`, iar ID-ul specialistului în `booking-core.js`. Dacă un serviciu se schimbă pe MERO, actualizează ID-ul, durata și prețul în `index.html` și în secțiunea Servicii.
+Deasupra calendarului, **Deschide în MERO** deschide același pas într-o filă nouă. E util în browserele care blochează cookie-urile din iframe, de exemplu Safari pe iPhone, unde autentificarea MERO poate să nu se finalizeze în pagină.
+
+ID-urile serviciilor sunt în atributele `data-mero` și în opțiunile meniului **Serviciu** din `index.html`, iar ID-ul specialistului în `booking-core.js`. Dacă un serviciu se schimbă pe MERO, actualizează ID-ul, durata și prețul în `index.html`.
 
 Statusul „Deschis acum” din hero și din programări se calculează după ora României și după programul de pe MERO: luni - vineri 10:00 - 19:00, sâmbătă 10:30 - 17:30, duminică închis.
 
