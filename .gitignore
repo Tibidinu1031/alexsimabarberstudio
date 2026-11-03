@@ -1,0 +1,21 @@
+node_modules/
+har-studio/
+dist/
+.sites/
+outputs/
+.env*
+*.zip
+*.tar.gz
+research.html
+source-*.html
+contact-sheet.jpg
+qa/
+# Local AI tool and assistant settings, never part of the site.
+.claude/
+.codex/
+.chatgpt/
+.openai/
+.cursor/
+.gemini/
+.windsurf/
+.aider*

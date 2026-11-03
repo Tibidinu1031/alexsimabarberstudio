@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root = path.resolve(import.meta.dirname, '..');
+const html = fs.readFileSync(path.join(root,'index.html'),'utf8');
+const js = fs.readFileSync(path.join(root,'app.js'),'utf8');
+const bookingJs = fs.readFileSync(path.join(root,'booking.js'),'utf8');
+const bookingCore = fs.readFileSync(path.join(root,'booking-core.js'),'utf8');
+const introJs = fs.readFileSync(path.join(root,'intro.js'),'utf8');
+const introCss = fs.readFileSync(path.join(root,'intro.css'),'utf8');
+const css = ['style.css','booking.css','ornaments.css','hero.css','theme.css','intro.css'].map(name => fs.readFileSync(path.join(root,name),'utf8')).join('\n');
+assert(!/[\u2013\u2014\u2015]/u.test(html+js+bookingJs+bookingCore+introJs),'Long dash found in page source');
+assert(!/har[ _]?studio|17CUTS|0729 ?053 ?642|frizetto|0745 ?494 ?412|wa\.me\/40745/i.test(html+js+bookingJs+bookingCore+css),'Previous client data left in page source');
+assert(html.includes('<html lang="ro">'),'Romanian language missing');
+assert(html.includes('tel:+40757651403'),'Phone missing');
+for (const url of ['https://mero.ro/p/alex-sima','https://www.instagram.com/alexsimabarberstudio/','https://www.facebook.com/p/Alex-Sima-Barber-Studio-61584611043215/']) assert(html.includes(url),`Missing social link: ${url}`);
+assert(html.includes("classList.add('intro-on')") && html.includes('class="intro"'),'Logo intro missing');
+assert(introCss.includes('intro-failsafe'),'Logo intro needs a CSS failsafe');
+assert.equal((html.match(/class="intro-pole /g) || []).length,2,'Logo intro needs a barber pole on each side');
+for (const match of html.matchAll(/data-mero="([^"]*)"/g)) assert(/^[0-9a-f]{24}$/.test(match[1]),`Invalid MERO service id: ${match[1]}`);
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+assert.equal(ids.length,new Set(ids).size,'Duplicate HTML ids');
+for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
+  const ref = match[1];
+  if (/^(https?:|tel:|data:)/.test(ref)) continue;
+  const assetPath = ref.split(/[?#]/)[0];
+  assert(!assetPath.startsWith('/'),`Absolute path breaks project GitHub Pages: ${ref}`);
+  assert(fs.existsSync(path.join(root,assetPath)),`Missing local asset: ${ref}`);
+}
+for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(ids.includes(match[1]),`Broken anchor: ${match[1]}`);
+for (const match of js.matchAll(/src:'(assets\/[^']+)'/g)) assert(fs.existsSync(path.join(root,match[1])),`Missing gallery image: ${match[1]}`);
+for (const match of fs.readFileSync(path.join(root,'assets/fonts.css'),'utf8').matchAll(/url\(([^)]+)\)/g)) assert(fs.existsSync(path.join(root,'assets',match[1])),`Missing font: ${match[1]}`);
+assert(css.includes('prefers-reduced-motion'),'Reduced motion missing');
+assert(html.includes('output=embed'),'Google Maps missing');
+assert(fs.existsSync(path.join(root,'.nojekyll')),'.nojekyll missing');
+console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, MERO service ids, logo intro with barber poles, Google Maps, language, reduced motion, no long dashes, no previous client data.');
