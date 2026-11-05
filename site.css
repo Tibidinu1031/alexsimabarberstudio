@@ -12,6 +12,10 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 1px)}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 var(--body);-webkit-font-smoothing:antialiased}
 /* The whole page sits in front of a photo of an old-school barbershop, fixed to the window and darkened so the text stays readable. */
 body::before{content:'';position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,9,7,.62),rgba(11,9,7,.78)),url('assets/barbershop-background.webp') center/cover no-repeat}
+/* A portrait screen shows the left half of the photo, which holds the whole left chair. The photo is shorter than the screen, so its top and bottom fade into the page colour. */
+@media(orientation:portrait){
+  body::before{background:linear-gradient(var(--bg) calc(50% - 66.6vw),transparent calc(50% - 42vw),transparent calc(50% + 52vw),var(--bg) calc(50% + 66.6vw)),linear-gradient(rgba(11,9,7,.58),rgba(11,9,7,.58)),url('assets/barbershop-background.webp') left center/200% auto no-repeat,var(--bg)}
+}
 body::after{content:'';position:fixed;inset:0;z-index:150;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .7 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 body.modal-open{overflow:hidden}
 img{display:block;max-width:100%;height:auto}

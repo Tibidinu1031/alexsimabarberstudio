@@ -34,7 +34,7 @@ Barbershop clasic, negru cu auriu, în spiritul logo-ului. Tot stilul paginii e 
 
 - Header cu emblema în centru și meniul împărțit stânga-dreapta. Pe telefon, emblema cu numele și un meniu.
 - Hero pe toată lățimea, cu fotografia din studio, ramă aurie dublă și o bară cu evaluarea, adresa și statusul „Deschis acum”.
-- Fundal: fotografia de frizerie old-school din `assets/barbershop-background.webp`, fixată pe fereastră și întunecată ca să se citească textul.
+- Fundal: fotografia de frizerie old-school din `assets/barbershop-background.webp`, fixată pe fereastră și întunecată ca să se citească textul. Pe ecranele în portret se vede jumătatea stângă a pozei, cu tot scaunul din stânga.
 - Conținutul se întinde pe toată lățimea paginii, cu o margine mică. Pe ecrane late, lista de prețuri și galeria primesc mai multe coloane.
 - Servicii afișate ca o listă de prețuri de frizerie, cu linie punctată între serviciu și preț.
 - Galerie mozaic cu filtre. Fotografia apăsată se deschide mare, cu miniaturi pentru răsfoit, săgeți, tastatură și glisare pe telefon.
