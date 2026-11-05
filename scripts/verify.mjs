@@ -16,10 +16,10 @@ assert(html.includes('tel:+40757651403'),'Phone missing');
 for (const url of ['https://mero.ro/p/alex-sima','https://www.instagram.com/alexsimabarberstudio/','https://www.facebook.com/p/Alex-Sima-Barber-Studio-61584611043215/']) assert(html.includes(url),`Missing social link: ${url}`);
 assert(html.includes("classList.add('intro-on')") && html.includes('class="intro"'),'Logo intro missing');
 assert(introCss.includes('intro-failsafe'),'Logo intro needs a CSS failsafe');
-assert.equal((html.match(/class="intro-pole /g) || []).length,2,'Logo intro needs a barber pole on each side');
+assert(html.includes('class="intro-loader"'),'Logo intro needs its loading bar');
+assert(!/barber-pole|intro-pole/.test(html+introCss+introJs),'The barber poles are gone from the logo intro');
 assert(html.includes('id="mero-frame"') && html.includes('src="https://mero.ro/p/alex-sima"'),'MERO booking calendar must be embedded in the page');
 assert(!/>\s*0\d\s*(\/|<)/.test(html),'Section numbering like 01 / 02 is not part of this design');
-assert(html.includes('<use href="#barber-pole"/>') && html.includes('class="pole-cover"'),'Barber poles must be SVG');
 for (const match of html.matchAll(/data-mero="([^"]*)"/g)) assert(/^[0-9a-f]{24}$/.test(match[1]),`Invalid MERO service id: ${match[1]}`);
 for (const match of html.matchAll(/<option value="([^"]+)"/g)) assert(/^[0-9a-f]{24}$/.test(match[1]),`Invalid MERO service id in the booking menu: ${match[1]}`);
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
@@ -37,4 +37,4 @@ for (const match of fs.readFileSync(path.join(root,'assets/fonts.css'),'utf8').m
 assert(css.includes('prefers-reduced-motion'),'Reduced motion missing');
 assert(html.includes('output=embed'),'Google Maps missing');
 assert(fs.existsSync(path.join(root,'.nojekyll')),'.nojekyll missing');
-console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, embedded MERO calendar, MERO service ids, no section numbering, logo intro with SVG barber poles, Google Maps, language, reduced motion, no long dashes, no previous client data.');
+console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, embedded MERO calendar, MERO service ids, no section numbering, logo intro with its loading bar, Google Maps, language, reduced motion, no long dashes, no previous client data.');

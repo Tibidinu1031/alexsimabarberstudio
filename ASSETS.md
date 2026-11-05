@@ -20,6 +20,8 @@ Adresele complete încep cu `https://d3uxkpn8v3i9eu.cloudfront.net/`.
 
 Logo: `assets/alexsima-logo.jpg`, `assets/alexsima-logo.webp` (fundal transparent), `assets/alexsima-emblem.jpg` și `assets/favicon.png` provin din logo-ul clientului, la rezoluția de pe profilul MERO (`profile-images/original/693445ee9b1b5ea2bdc6f6f5`).
 
+Fundal: `assets/barbershop-background.webp` a fost trimisă de client. Sursa și licența nu sunt verificate.
+
 Fonturi: Cinzel, Playfair Display și DM Sans, distribuite prin Google Fonts. Copii locale în `assets/`. Familiile sunt disponibile sub SIL Open Font License. Licențele sunt păstrate în `assets/licenses/`.
 
 Datele de contact provin din profilul Google Business și din [pagina de Facebook](https://www.facebook.com/p/Alex-Sima-Barber-Studio-61584611043215/). Serviciile, prețurile, programul și evaluările provin de pe MERO.

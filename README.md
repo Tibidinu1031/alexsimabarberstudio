@@ -34,16 +34,17 @@ Barbershop clasic, negru cu auriu, în spiritul logo-ului. Tot stilul paginii e 
 
 - Header cu emblema în centru și meniul împărțit stânga-dreapta. Pe telefon, emblema cu numele și un meniu.
 - Hero pe toată lățimea, cu fotografia din studio, ramă aurie dublă și o bară cu evaluarea, adresa și statusul „Deschis acum”.
-- Secțiuni cu titluri centrate, ornament auriu și fundalul cu romburi și stele din `assets/old-school-pattern.svg`.
+- Fundal: fotografia de frizerie old-school din `assets/barbershop-background.webp`, fixată pe fereastră și întunecată ca să se citească textul.
+- Conținutul se întinde pe toată lățimea paginii, cu o margine mică. Pe ecrane late, lista de prețuri și galeria primesc mai multe coloane.
 - Servicii afișate ca o listă de prețuri de frizerie, cu linie punctată între serviciu și preț.
 - Galerie mozaic cu filtre. Fotografia apăsată se deschide mare, cu miniaturi pentru răsfoit, săgeți, tastatură și glisare pe telefon.
 - `assets/fonts.css`: Cinzel pentru titluri, Playfair Display Italic pentru accente și DM Sans pentru text.
 
 ## Ecranul de deschidere
 
-La încărcare, logo-ul apare în centru, între doi stâlpi de frizerie roșu, alb și albastru, desenați în SVG (simbolul `#barber-pole` din `index.html`). Ambii stâlpi folosesc același simbol, așa că se umplu și se rotesc împreună. Dungile se umplu de jos în sus cât timp se încarcă pagina și ajung sus abia după ce s-a încărcat. Apoi stâlpii capătă un halou auriu. Dungile se rotesc continuu și accelerează când treci cu mouse-ul peste un stâlp. Logo-ul se înclină după cursor și o lumină aurie îl urmărește. Click sau atingere pe logo îl face să pulseze și rotește stâlpii mai repede.
+La încărcare, pe un fundal complet negru, logo-ul apare în centru, iar sub el o bară de încărcare cu dungi albe, roșii și albastre. Dungile curg continuu, iar bara se umple de la stânga la dreapta cât timp se încarcă pagina și ajunge la capăt abia după ce s-a încărcat. Logo-ul se înclină după cursor. Click sau atingere pe logo îl face să pulseze.
 
-Ecranul dispare după cel puțin 3,8 secunde, odată ce stâlpii sunt plini, sau imediat la click în afara logo-ului, tastă, scroll sau glisare. Nu rămâne mai mult de 8,5 secunde. O animație CSS îl ascunde după 9 secunde dacă JavaScript nu rulează. Cu mișcare redusă, logo-ul și stâlpii apar plini, fără animații.
+Ecranul dispare după cel puțin 3,8 secunde, odată ce bara e plină, sau imediat la click în afara logo-ului, tastă, scroll sau glisare. Nu rămâne mai mult de 8,5 secunde. O animație CSS îl ascunde după 9 secunde dacă JavaScript nu rulează. Cu mișcare redusă, logo-ul și bara apar pline, fără animații.
 
 `assets/alexsima-logo.webp` este logo-ul clientului cu fundalul negru făcut transparent, ca să stea direct pe fundalul paginii. `assets/alexsima-logo.jpg` rămâne pentru imaginea de share.
 

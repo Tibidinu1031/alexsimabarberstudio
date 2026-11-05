@@ -1,40 +1,37 @@
-/* Opening screen: the logo between two SVG barber poles that fill up while the page loads. It exists only while html.intro-on is set by the inline head script. */
+/* Opening screen: the logo with a red, white and blue loading bar under it that fills up while the page loads. It exists only while html.intro-on is set by the inline head script. */
 .intro{display:none}
 .intro-on .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:300;cursor:pointer;overflow:hidden;-webkit-user-select:none;user-select:none;animation:intro-failsafe .4s 9s forwards}
-.intro-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(201,162,76,.14),transparent 55%),url('assets/old-school-pattern.svg') center/96px 96px,var(--bg);transition:opacity .8s var(--ease) .25s}
-.intro-backdrop::after{content:'';position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,50%) var(--my,45%),rgba(241,213,140,.1),transparent 65%),radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75))}
-.intro-stage{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,64px);perspective:1000px}
-.intro-logo{position:relative;width:min(460px,52vw,62vh);aspect-ratio:1;transform:rotateX(calc(var(--py,0) * -8deg)) rotateY(calc(var(--px,0) * 10deg));transition:transform .5s var(--ease);animation:intro-logo-in 1.1s .2s cubic-bezier(.2,.9,.25,1) both}
+.intro-backdrop{position:absolute;inset:0;background:#000;transition:opacity .8s var(--ease) .25s}
+.intro-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;perspective:1000px}
+.intro-logo{position:relative;width:min(460px,78vw,62vh);aspect-ratio:1;transform:rotateX(calc(var(--py,0) * -8deg)) rotateY(calc(var(--px,0) * 10deg));transition:transform .5s var(--ease);animation:intro-logo-in 1.1s .2s cubic-bezier(.2,.9,.25,1) both}
 .intro-logo img,.intro-shine{position:absolute;inset:0;width:100%;height:100%;-webkit-mask:radial-gradient(closest-side,#000 82%,transparent 100%);mask:radial-gradient(closest-side,#000 82%,transparent 100%)}
 .intro-logo img{animation:intro-glow 3.4s 2.2s ease-in-out infinite alternate}
-.intro-shine{pointer-events:none;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 35%,rgba(255,236,170,.55) 48%,rgba(255,250,225,.75) 50%,rgba(255,236,170,.55) 52%,transparent 65%) -150% 0/250% 100% no-repeat,radial-gradient(240px circle at var(--lx,50%) var(--ly,40%),rgba(255,226,150,.28),transparent 70%);animation:intro-sweep 1.4s 1.25s ease-in-out both}
+.intro-shine{pointer-events:none;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 35%,rgba(255,236,170,.55) 48%,rgba(255,250,225,.75) 50%,rgba(255,236,170,.55) 52%,transparent 65%) -150% 0/250% 100% no-repeat;animation:intro-sweep 1.4s 1.25s ease-in-out both}
 .intro.is-ready .intro-logo,.intro.is-ready .intro-shine{animation:none}
 .intro .intro-logo.is-struck{animation:intro-strike .7s var(--ease)}
 .intro .intro-logo.is-struck .intro-shine{animation:intro-sweep .9s ease-in-out}
-/* The poles share one SVG symbol. A dark glass cover shrinks off the stripes with a transform, so the fill stays smooth while the page is still busy loading. */
-.intro-pole{position:relative;height:min(310px,37vh,62vw);aspect-ratio:80/300;transform:translate(calc(var(--px,0) * -14px),calc(var(--py,0) * -8px));transition:transform .5s var(--ease),filter .6s;animation:intro-pole-in .8s cubic-bezier(.2,.9,.25,1) both}
-.intro-pole svg{display:block;width:100%;height:100%;overflow:visible}
-.intro-pole-right{transform:translate(calc(var(--px,0) * 14px),calc(var(--py,0) * -8px));animation-delay:.08s}
-.pole-cover{position:absolute;left:15%;width:70%;top:12.33%;height:76%;transform-origin:top;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(255,255,255,.1) 26%,rgba(255,255,255,.03) 42%,rgba(0,0,0,.18) 70%,rgba(0,0,0,.62)),#140f08;will-change:transform;animation:pole-fill 2.2s .3s cubic-bezier(.3,.1,.3,1) both}
-.intro.is-filled .pole-cover{animation:pole-fill-end .55s cubic-bezier(.3,.1,.3,1) both}
-.intro.is-filled .intro-pole{filter:drop-shadow(0 0 14px rgba(241,213,140,.35))}
+/* The stripes run the whole time. A dark cover shrinks off them with a transform, so the fill stays smooth while the page is still busy loading. */
+.intro-loader{position:relative;width:min(320px,62vw);height:16px;overflow:hidden;border-radius:5px;background:#000;box-shadow:0 0 0 1px var(--gold),0 0 0 4px #000,0 0 0 5px var(--line-strong);transition:transform .9s var(--ease),opacity .5s;animation:intro-loader-in .7s .35s var(--ease) backwards}
+.intro-loader-stripes{position:absolute;inset:0 -46px 0 0;background:repeating-linear-gradient(-45deg,#fff 0 8px,#c8202c 8px 16px,#fff 16px 24px,#2149ad 24px 32px);will-change:transform;animation:intro-stripes 1.1s linear infinite}
+.intro-loader-cover{position:absolute;inset:0;transform-origin:right;background:#000;will-change:transform;animation:intro-fill 2.2s .3s cubic-bezier(.3,.1,.3,1) both}
+.intro.is-filled .intro-loader-cover{animation:intro-fill-end .55s cubic-bezier(.3,.1,.3,1) both}
 .intro.is-leaving{pointer-events:none}
 .intro.is-leaving .intro-backdrop{opacity:0}
 .intro.is-leaving .intro-logo{transition:transform .9s var(--ease),opacity .6s;transform:scale(1.18);opacity:0}
-.intro.is-leaving .intro-pole-left{transition:transform .9s var(--ease),opacity .7s;transform:translateX(-60vw);opacity:0}
-.intro.is-leaving .intro-pole-right{transition:transform .9s var(--ease),opacity .7s;transform:translateX(60vw);opacity:0}
+.intro.is-leaving .intro-loader{transform:translateY(40px);opacity:0}
 .intro-done .hero-content>*{animation:intro-rise .9s var(--ease) both}
 .intro-done .hero-content>:nth-child(2){animation-delay:.06s}
 .intro-done .hero-content>:nth-child(n+3){animation-delay:.14s}
 @keyframes intro-logo-in{from{opacity:0;scale:.82;filter:blur(10px) brightness(.4)}to{opacity:1;scale:1;filter:none}}
-@keyframes intro-glow{from{filter:brightness(1)}to{filter:brightness(1.12) drop-shadow(0 0 18px rgba(241,213,140,.25))}}
-@keyframes intro-sweep{from{background-position:-150% 0,0 0}to{background-position:250% 0,0 0}}
+@keyframes intro-glow{from{filter:brightness(1)}to{filter:brightness(1.12)}}
+@keyframes intro-sweep{from{background-position:-150% 0}to{background-position:250% 0}}
 @keyframes intro-strike{0%{scale:1}30%{scale:.94}65%{scale:1.04}100%{scale:1}}
-@keyframes intro-pole-in{from{opacity:0;translate:0 40px}to{opacity:1;translate:0 0}}
-@keyframes pole-fill{from{transform:scaleY(1)}to{transform:scaleY(.12)}}
-@keyframes pole-fill-end{from{transform:scaleY(.12)}to{transform:scaleY(0)}}
+@keyframes intro-loader-in{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+/* One stripe cycle is 32px along the gradient, which is 32 x sqrt(2) across the bar, so the loop has no visible jump. */
+@keyframes intro-stripes{to{transform:translateX(-45.255px)}}
+@keyframes intro-fill{from{transform:scaleX(1)}to{transform:scaleX(.12)}}
+@keyframes intro-fill-end{from{transform:scaleX(.12)}to{transform:scaleX(0)}}
 @keyframes intro-rise{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
 @keyframes intro-fade{from{opacity:0}to{opacity:1}}
 @keyframes intro-failsafe{to{opacity:0;visibility:hidden}}
-@media(max-width:560px){.intro-stage{gap:12px}.intro-logo{width:min(54vw,270px)}.intro-pole{height:min(230px,30vh)}}
-@media(prefers-reduced-motion:reduce){.intro-logo,.intro-pole,.intro-pole-right{transform:none}.pole-cover{display:none}}
+@media(prefers-reduced-motion:reduce){.intro-logo{transform:none}.intro-loader-stripes{animation:none}.intro-loader-cover{display:none}}
